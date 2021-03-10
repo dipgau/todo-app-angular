@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="head">
+    <h3>Enter activities to do</h3>
+    <input
+      matInput
+      type="text"
+      (change)="onInputChange($event)"
+      [(ngModel)]="item"
+      placeholder="Add items todo..."
+    />
+    <button mat-button color="primary" (click)="onClickAddBtn()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div
+    *ngFor="let todoItem of todos; let i = index"
+    [ngClass]="{ style: todoItem.checked }"
+  >
+    <ul class="list">
+      <li>
+        <mat-checkbox (change)="onCheckboxClicked(i)"></mat-checkbox>
+        {{ todoItem.item }}
+        <button
+          class="del-icon"
+          mat-button
+          color="warn"
+          (click)="removeItem(i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
